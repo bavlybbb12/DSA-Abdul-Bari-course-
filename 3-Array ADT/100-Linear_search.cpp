@@ -97,4 +97,6 @@ int main () {
 
     delete_element ( arr, 2 ) ;
 
+    linear_search ( arr, 10 ) ;
+
 }
