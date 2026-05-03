@@ -10,7 +10,9 @@ class diagonal{
 
     public:
 
-    diagonal(int n) {n = n ; A = new int[n] ;}
+    
+    diagonal() { n = 0 ; A = nullptr ; }
+    diagonal(int n) {this-> n = n ; A = new int[n] ;}
     void set (int i , int j , int x );
     void get ( int i , int j );
     void display();
