@@ -135,6 +135,13 @@ int main () {
     count ( list ) ;
     cout << "Recursive count: " << count_recursivly ( list ) << endl ;
 
+    sum ( list ) ;
+
+    cout << endl ;
+    cout << "Recursive sum: " << sum_recursively ( list ) << endl ;
+
+    maximum ( list ) ;
+
     destroy ( list ) ;
     list = nullptr ;
     

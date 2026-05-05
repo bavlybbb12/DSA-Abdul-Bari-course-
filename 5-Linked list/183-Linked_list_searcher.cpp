@@ -94,6 +94,47 @@ int sum_recursively ( Node* head ) {
 
 }
 
+void maximum ( Node* head ) {
+    
+    if ( head == nullptr ) {
+        cout << "List is empty." << endl ;
+        return ;
+    }
+
+    int max_value = head->data ;
+    head = head->next ;
+
+    while ( head ) {
+
+        if ( head->data > max_value ) {
+            max_value = head->data ;
+        }
+        head = head->next ;
+
+    }
+
+    cout << "Maximum element in the linked list: " << max_value << endl;
+
+}
+
+void search ( Node* head , int key ) {
+
+    int index = 0 ;
+    while ( head ) {
+
+        if ( head->data == key ) {
+            cout << "Element " << key << " found at index: " << index << endl ;
+            return ;
+        }
+        head = head->next ;
+        index++ ;
+
+    }
+
+    cout << "Element " << key << " not found in the linked list." << endl ;
+
+}
+
 int main () {
 
     Node* list = new Node ;
@@ -116,6 +157,10 @@ int main () {
 
     cout << endl ;
     cout << "Recursive sum: " << sum_recursively ( list ) << endl ;
+
+    maximum ( list ) ;
+
+    search ( list , 3 ) ;
 
     destroy ( list ) ;
     list = nullptr ;
