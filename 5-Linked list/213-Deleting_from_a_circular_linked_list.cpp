@@ -523,6 +523,11 @@ int main () {
     display_circular ( circular ) ;
     cout << endl ;
 
+    remove_circular ( circular , 0 ) ;
+    cout << "After removing element at index 0 in circular linked list: " ;
+    display_circular ( circular ) ;
+    cout << endl ;
+
     destroy_circular ( circular ) ;
     destroy ( merged ) ;
     list = nullptr ;
