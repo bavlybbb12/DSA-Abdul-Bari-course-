@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std ;
 
 struct Node {
@@ -53,25 +54,71 @@ public:
         }
     }
 
-    void Preorder(Node* node) {
+    void Preorder_recursively(Node* node) {
         if (node == nullptr) return;
         cout << node->data << " ";
-        Preorder(node->left);
-        Preorder(node->right);
+        Preorder_recursively(node->left);
+        Preorder_recursively(node->right);
     }
 
-    void Inorder(Node* node) {
+    void Inorder_recursively(Node* node) {
         if (node == nullptr) return;
-        Inorder(node->left);
+        Inorder_recursively(node->left);
         cout << node->data << " ";
-        Inorder(node->right);
+        Inorder_recursively(node->right);
     }
 
-    void Postorder(Node* node) {
+    void Postorder_recursively(Node* node) {
         if (node == nullptr) return;
-        Postorder(node->left);
-        Postorder(node->right);
+        Postorder_recursively(node->left);
+        Postorder_recursively(node->right);
         cout << node->data << " ";
+    }
+
+    void Preorder_iteratively(Node* node) {
+        if (node == nullptr) return;
+        stack<Node*> s;
+        s.push(node);
+        while (!s.empty()) {
+            Node* current = s.top();
+            s.pop();
+            cout << current->data << " ";
+            if (current->right) s.push(current->right);
+            if (current->left) s.push(current->left);
+        }
+    }
+
+    void Inorder_iteratively(Node* node) {
+        if (node == nullptr) return;
+        stack<Node*> s;
+        Node* current = node;
+        while (current != nullptr || !s.empty()) {
+            while (current != nullptr) {
+                s.push(current);
+                current = current->left;
+            }
+            current = s.top();
+            s.pop();
+            cout << current->data << " ";
+            current = current->right;
+        }
+    }
+
+    void Postorder_iteratively(Node* node) {
+        if (node == nullptr) return;
+        stack<Node*> s1, s2;
+        s1.push(node);
+        while (!s1.empty()) {
+            Node* current = s1.top();
+            s1.pop();
+            s2.push(current);
+            if (current->left) s1.push(current->left);
+            if (current->right) s1.push(current->right);
+        }
+        while (!s2.empty()) {
+            cout << s2.top()->data << " ";
+            s2.pop();
+        }
     }
 };
 
@@ -79,13 +126,22 @@ int main() {
     BinaryTree tree;
     tree.Create();
     cout << "Inorder Traversal: ";
-    tree.Inorder(tree.root);
+    tree.Inorder_recursively(tree.root);
     cout << endl;
     cout << "Preorder Traversal: ";
-    tree.Preorder(tree.root);
+    tree.Preorder_recursively(tree.root);
     cout << endl;
     cout << "Postorder Traversal: ";
-    tree.Postorder(tree.root);
+    tree.Postorder_recursively(tree.root);
+    cout << endl;
+    cout << "Preorder Traversal (Iteratively): ";
+    tree.Preorder_iteratively(tree.root);
+    cout << endl;
+    cout << "Inorder Traversal (Iteratively): ";
+    tree.Inorder_iteratively(tree.root);
+    cout << endl;
+    cout << "Postorder Traversal (Iteratively): ";
+    tree.Postorder_iteratively(tree.root);
     cout << endl;
     return 0;
 }
