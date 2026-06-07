@@ -139,6 +139,12 @@ public:
 
         }
     }
+
+    int countNodes(Node* node) {
+        if (node == nullptr) return 0;
+        return 1 + countNodes(node->left) + countNodes(node->right);
+    }
+    
 };
 
 int main() {
