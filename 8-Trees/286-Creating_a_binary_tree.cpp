@@ -120,6 +120,25 @@ public:
             s2.pop();
         }
     }
+
+    void levelorder (Node* node) {
+
+        if (!node) return ;
+        
+        queue<Node*> q ;
+        q.push(node) ;
+
+        while (!q.empty()) {
+
+            Node* current = q.front() ;
+            q.pop() ;
+            cout << current->data << " " ;
+
+            if (current->left) q.push(current->left) ;
+            if (current->right) q.push(current->right) ;
+
+        }
+    }
 };
 
 int main() {
