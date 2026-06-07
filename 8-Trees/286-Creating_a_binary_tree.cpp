@@ -53,11 +53,25 @@ public:
         }
     }
 
+    void Preorder(Node* node) {
+        if (node == nullptr) return;
+        cout << node->data << " ";
+        Preorder(node->left);
+        Preorder(node->right);
+    }
+
     void Inorder(Node* node) {
         if (node == nullptr) return;
         Inorder(node->left);
         cout << node->data << " ";
         Inorder(node->right);
+    }
+
+    void Postorder(Node* node) {
+        if (node == nullptr) return;
+        Postorder(node->left);
+        Postorder(node->right);
+        cout << node->data << " ";
     }
 };
 
@@ -66,6 +80,12 @@ int main() {
     tree.Create();
     cout << "Inorder Traversal: ";
     tree.Inorder(tree.root);
+    cout << endl;
+    cout << "Preorder Traversal: ";
+    tree.Preorder(tree.root);
+    cout << endl;
+    cout << "Postorder Traversal: ";
+    tree.Postorder(tree.root);
     cout << endl;
     return 0;
 }
